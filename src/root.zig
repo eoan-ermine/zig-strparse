@@ -14,7 +14,6 @@ pub fn ParseError(comptime T: type) type {
     };
 }
 
-/// Универсальная функция парсинга (аналог .parse() в Rust).
 pub fn parse(comptime T: type, s: []const u8) ParseError(T)!T {
     return switch (@typeInfo(T)) {
         .int => std.fmt.parseInt(T, s, 10),
@@ -26,7 +25,6 @@ pub fn parse(comptime T: type, s: []const u8) ParseError(T)!T {
             false
         else
             error.ParseBoolError,
-        // Делегирование пользовательским типам (аналог трейта FromStr)
         .@"struct", .@"union" => if (@hasDecl(T, "parse"))
             T.parse(s)
         else
