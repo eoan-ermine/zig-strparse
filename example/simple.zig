@@ -1,31 +1,6 @@
-# zig-strparse
+const std = @import("std");
+const strparse = @import("strparse");
 
-Generic string parsing library for Zig.
-
-# Installation
-
-For Zig vMAJOR.MINOR.PATCH:
-
-```bash
-zig fetch --save https://github.com/eoan-ermine/zig-strparse/archive/refs/tags/<REPLACE ME>.tar.gz
-```
-
-For Zig master branch:
-
-```bash
-zig fetch --save git+https://github.com/eoan-ermine/zig-strparse
-```
-
-Then add the following to `build.zig`:
-
-```zig
-const strparse = b.dependency("strparse", .{});
-exe.root_module.addImport("strparse", strparse.module("strparse"));
-```
-
-# Examples
-
-```zig
 const Point = struct {
     x: i32,
     y: i32,
@@ -59,4 +34,3 @@ pub fn main() !void {
     std.log.info("y: {}", .{y});
     std.log.info("z: {},{}", .{ z.x, z.y });
 }
-```
