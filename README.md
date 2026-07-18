@@ -21,7 +21,7 @@ zig fetch --save git+https://github.com/eoan-ermine/zig-strparse
 Then add the following to `build.zig`:
 
 ```zig
-const strparse = b.dependency("strparse", .{});
+const strparse = b.dependency("zig_strparse", .{});
 exe.root_module.addImport("strparse", strparse.module("strparse"));
 ```
 
