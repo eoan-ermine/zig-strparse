@@ -32,3 +32,33 @@ pub fn parse(comptime T: type, s: []const u8) ParseError(T)!T {
         else => @compileError("strparse: strparse doesn't support " ++ @typeName(T)),
     };
 }
+
+test "parse_int" {
+    try std.testing.expectEqual(-10, try parse(i32, "-10"));
+    try std.testing.expectEqual(10, try parse(i32, "+10"));
+    try std.testing.expectEqual(10, try parse(i32, "10"));
+    try std.testing.expectError(error.InvalidCharacter, parse(i32, "not-int"));
+}
+
+test "parse_float" {
+    try std.testing.expectEqual(-2.5, try parse(f32, "-2.5"));
+    try std.testing.expectEqual(2.5, try parse(f32, "+2.5"));
+    try std.testing.expectEqual(2.5, try parse(f32, "2.5"));
+    try std.testing.expectError(error.InvalidCharacter, parse(f32, "not-float"));
+}
+
+test "parse_enum" {
+    const E1 = enum {
+        A,
+        B,
+    };
+    try std.testing.expectEqual(E1.A, try parse(E1, "A"));
+    try std.testing.expectEqual(E1.B, try parse(E1, "B"));
+    try std.testing.expectError(error.InvalidEnumTag, parse(E1, "C"));
+}
+
+test "parse_bool" {
+    try std.testing.expectEqual(true, try parse(bool, "true"));
+    try std.testing.expectEqual(false, try parse(bool, "false"));
+    try std.testing.expectError(error.ParseBoolError, parse(bool, "not-bool"));
+}
