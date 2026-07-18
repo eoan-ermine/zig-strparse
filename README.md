@@ -1,5 +1,7 @@
 # zig-strparse
 
+[![API Reference](https://github.com/eoan-ermine/zig-strparse/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/eoan-ermine/zig-strparse/actions/workflows/docs.yml) [![Linux (Zig 0.16.0)](https://github.com/eoan-ermine/zig-strparse/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/eoan-ermine/zig-strparse/actions/workflows/main.yml) [![Linux (Zig master)](https://github.com/eoan-ermine/zig-strparse/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/eoan-ermine/zig-strparse/actions/workflows/master.yml)
+
 Generic string parsing library for Zig.
 
 # Installation
