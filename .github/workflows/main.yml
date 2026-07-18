@@ -1,4 +1,4 @@
-name: linux
+name: Linux (Zig 0.16.0)
 on:
   push:
   pull_request:

@@ -1,4 +1,4 @@
-name: linux with latest zig
+name: Linux (Zig master)
 on:
   push:
   pull_request:
