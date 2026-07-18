@@ -26,4 +26,14 @@ pub fn build(b: *std.Build) void {
     const install_simple_example = b.addInstallArtifact(simple_example, .{});
     example_step.dependOn(&simple_example.step);
     example_step.dependOn(&install_simple_example.step);
+
+    const docs_step = b.step("docs", "Generate docs");
+    const install_docs = b.addInstallDirectory(.{ .source_dir = strparse_tests.getEmittedDocs(), .install_dir = .prefix, .install_subdir = "docs" });
+    docs_step.dependOn(&install_docs.step);
+
+    const all_step = b.step("all", "Build everything and runs all tests");
+    all_step.dependOn(test_step);
+    all_step.dependOn(example_step);
+
+    b.default_step.dependOn(all_step);
 }
